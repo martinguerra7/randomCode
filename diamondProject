@@ -1,0 +1,102 @@
+public class diamondProject {
+
+	public static void topBottomFrame(int size){ //these will go in Logic
+		printString("+", 1);
+		printString("-", size*2);
+		System.out.println("+");
+	}
+	
+	public static void printString(String charToPrint, int timesToPrint){
+		for(int i = 1; i <= timesToPrint; i++)
+			System.out.print(charToPrint);
+	}
+	
+	public static void middleLine(int size){ //prints middle line
+		printString("|<", 1);
+		if(size%2 == 0)
+			printString("-", size*2-2);
+		else
+			printString("=", size*2-2);
+		
+		System.out.println(">|");
+	}
+	
+	private static void bottomDiamond(int size) {
+		int rowNumber;
+		
+		for(int i = size; i > 1; i--){ //rows printed
+			rowNumber = i*2-4;
+			
+			printString("|", 1);
+			printString(" ", size-i+1); //print spaces
+			printString("\\", 1);		//print backslash
+			if(i == 1){					//print first line, no dash/equal signs
+				printString("/", 1);
+				printString(" ", size-i);
+			}
+			if(i > 1){					//for lines other than first line
+				while(rowNumber >= 1){
+					if(i%2==0){					//if even, print spaces
+						System.out.print("-");
+						rowNumber--;
+					}
+					else{						//if odd, print equals
+						System.out.print("=");
+						rowNumber--;
+					}
+				}
+				printString("/", 1);
+				printString(" ", size-i+1);
+			}
+			System.out.println("|");
+		}
+		topBottomFrame(size);				//bottom frame
+
+	}		
+	
+	public static void topDiamond(int size){
+
+		int numRows;				//keep track of row number and manipulate it
+		
+		topBottomFrame(size);			//top frame
+
+		for(int i = 1; i < size; i++){ //rows printed
+			numRows = 2*i-2;
+			System.out.print("|");
+			printString(" ", size-i);	//print spaces
+			printString("/", 1);
+			if(i == 1){
+				printString("\\", 1);		//prints first row, no dash/equal signs
+				printString(" ", size-i);
+			}
+			if(i > 1){
+				while(numRows*2 >= 1){	
+					if(i%2==0){						//if even, print dash
+						System.out.print("-");
+						numRows--;
+					}
+					else{
+						System.out.print("=");		//if odd, print equal sign
+						numRows--;
+					}
+				}
+				printString("\\", 1);
+				printString(" ", size-i);
+			}
+			System.out.println("|");
+		}
+	}
+
+	public static void main(String[] args) { //this will go in process
+
+		int size = 2;
+		
+		topDiamond(size);
+		middleLine(size);
+		bottomDiamond(size);
+		
+		
+	}
+
+
+}
