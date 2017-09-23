@@ -87,7 +87,7 @@ public class diamondProject {
 		}
 	}
 
-	public static void main(String[] args) { //this will go in process
+	public static void main(String[] args) { //this will go in process instead of main
 
 		int size = 2;
 		
